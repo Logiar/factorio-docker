@@ -1,4 +1,7 @@
-# Factorio [![Docker Version](https://img.shields.io/docker/v/factoriotools/factorio?sort=semver)](https://hub.docker.com/r/factoriotools/factorio/) [![Docker Pulls](https://img.shields.io/docker/pulls/factoriotools/factorio.svg?maxAge=600)](https://hub.docker.com/r/factoriotools/factorio/) [![Docker Stars](https://img.shields.io/docker/stars/factoriotools/factorio.svg?maxAge=600)](https://hub.docker.com/r/factoriotools/factorio/)
+# Factorio [![Docker Version](https://img.shields.io/docker/v/logiar/factorio?sort=semver)](https://hub.docker.com/r/logiar/factorio/) [![Docker Pulls](https://img.shields.io/docker/pulls/logiar/factorio.svg?maxAge=600)](https://hub.docker.com/r/logiar/factorio/) [![Docker Stars](https://img.shields.io/docker/stars/logiar/factorio.svg?maxAge=600)](https://hub.docker.com/r/logiar/factorio/)
+
+> [!NOTE]
+> This repository is a fork of [factoriotools/factorio-docker](https://github.com/factoriotools/factorio-docker). Some sections in this README (for example, contributors) may still reflect the upstream project history.
 
 > [!NOTE]
 > Support for ARM is experimental. Expect crashes and lag if you try to run this on a raspberry pi.
@@ -43,7 +46,7 @@ sudo docker run -d \
   -v /opt/factorio:/factorio \
   --name factorio \
   --restart=unless-stopped \
-  factoriotools/factorio
+  logiar/factorio
 ```
 
 For those new to Docker, here is an explanation of the options:
@@ -83,7 +86,7 @@ To issue console commands to the server, start the server in interactive mode wi
 ```shell
 docker run -d -it  \
       --name factorio \
-      factoriotools/factorio
+      logiar/factorio
 docker attach factorio
 ```
 
@@ -107,7 +110,7 @@ Delete the container and refresh the image:
 ```shell
 docker stop factorio
 docker rm factorio
-docker pull factoriotools/factorio
+docker pull logiar/factorio
 ```
 
 Now run the server as before. In about a minute the new version of Factorio should be up and running, complete with saves and config!
@@ -135,7 +138,7 @@ sudo docker run -d \
   -e SAVE_NAME=replaceme \
   --name factorio \
   --restart=unless-stopped \
-  factoriotools/factorio
+  logiar/factorio
 ```
 
 To generate a new map set `GENERATE_NEW_SAVE=true` and specify `SAVE_NAME`:
@@ -150,7 +153,7 @@ sudo docker run -d \
   -e SAVE_NAME=replaceme \
   --name factorio \
   --restart=unless-stopped \
-  factoriotools/factorio
+  logiar/factorio
 ```
 
 To generate a new map with a specific preset (e.g., death-world):
@@ -166,7 +169,7 @@ sudo docker run -d \
   -e PRESET=death-world \
   --name factorio \
   --restart=unless-stopped \
-  factoriotools/factorio
+  logiar/factorio
 ```
 
 ### Mods
@@ -191,7 +194,7 @@ docker run -d \
   --name factorio \
   --restart=unless-stopped  \
   --entrypoint "/scenario.sh" \
-  factoriotools/factorio \
+  logiar/factorio \
   MyScenarioName
 ```
 
@@ -207,7 +210,7 @@ docker run -d \
   --name factorio \
   --restart=unless-stopped  \
   --entrypoint "/scenario2map.sh" \
-  factoriotools/factorio
+  logiar/factorio
   MyScenarioName
 ```
 
@@ -260,7 +263,7 @@ Example which replaces the server-settings.json:
 
 ```yaml
 factorio_1:
-  image: factoriotools/factorio
+  image: logiar/factorio
   ports:
     - "34197:34197/udp"
   volumes:
@@ -353,10 +356,10 @@ The files in this volume should be owned by the factorio user, uid 845.
 * docker-engine >= 1.10.0 is required
 * docker-compose >=1.6.0 is required
 
-First get a [docker-compose.yml](https://github.com/factoriotools/factorio-docker/blob/master/docker/docker-compose.yml) file. To get it from this repository:
+First get a [docker-compose.yml](https://github.com/logiar/factorio-docker/blob/master/docker/docker-compose.yml) file. To get it from this repository:
 
 ```shell
-git clone https://github.com/factoriotools/factorio-docker.git
+git clone https://github.com/logiar/factorio-docker.git
 cd factorio-docker/docker
 ```
 
@@ -366,7 +369,7 @@ Or make your own:
 version: '2'
 services:
   factorio:
-    image: factoriotools/factorio
+    image: logiar/factorio
     ports:
      - "34197:34197/udp"
      - "27015:27015/tcp"
@@ -409,7 +412,7 @@ sudo docker run -d \
   -v /opt/factorio:/factorio \
   --name factorio \
   --restart=unless-stopped  \
-  factoriotools/factorio
+  logiar/factorio
 ```
 
 ## Deploy to other plaforms
@@ -474,7 +477,7 @@ docker run -d \
   -v ~/factorio:/factorio \
   --name factorio \
   --restart=unless-stopped \
-  factoriotools/factorio:stable-rootless
+  logiar/factorio:stable-rootless
 ```
 
 Key differences:
@@ -509,7 +512,7 @@ If you're experiencing permission errors such as:
 
 Please refer to our comprehensive [Permission Issues Guide](./PERMISSION_ISSUES_GUIDE.md) for detailed solutions. Common fixes include:
 - **Updating Docker** to version 20.x or newer (this resolves many issues)
-- **Using the rootless image** variants (e.g., `factoriotools/factorio:stable-rootless`)
+- **Using the rootless image** variants (e.g., `logiar/factorio:stable-rootless`)
 - **Setting correct ownership** for your specific Docker configuration
 
 ### My server is listed in the server browser, but nobody can connect
